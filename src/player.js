@@ -13,8 +13,8 @@ const Direction = {
 };
 
 const moveUp = () => {
-  if (playerPosition.y > 0) {
-    const { x, y } = playerPosition;
+  const { x, y } = playerPosition;
+  if (y > 0) {
     if (gridState[y - 1][x] === 0) {
       playerPosition.y -= 1;
     }
@@ -22,20 +22,29 @@ const moveUp = () => {
 }
 
 const moveDown = () => {
-  if (playerPosition.y < 15) {
-    playerPosition.y += 1;
+  const { x, y } = playerPosition;
+  if (y < 15) {
+    if (gridState[y + 1][x] === 0) {
+      playerPosition.y += 1;
+    }
   }
 }
 
 const moveLeft = () => {
-  if (playerPosition.x > 0) {
-    playerPosition.x -= 1;
+  const { x, y } = playerPosition;
+  if (x > 0) {
+    if (gridState[y][x - 1] === 0) {
+      playerPosition.x -= 1;
+    }
   }
 }
 
 const moveRight = () => {
-  if (playerPosition.x < 15) {
-    playerPosition.x += 1;
+  const { x, y } = playerPosition;
+  if (x < 15) {
+    if (gridState[y][x + 1] === 0) {
+      playerPosition.x += 1;
+    }
   }
 }
 
