@@ -1,5 +1,5 @@
 import { moveDown, moveLeft, moveRight, moveUp } from "./player";
-import { redraw } from "./render";
+import { render } from "./render";
 
 const setupEventListener = () => {
   window.addEventListener('keydown', (event) => {
@@ -20,12 +20,12 @@ const setupEventListener = () => {
         break;
     }
 
-    redraw();
+    render();
   })
 }
 
 const initGameState = () => {
-  redraw();
+  render();
   setupEventListener();
 }
 

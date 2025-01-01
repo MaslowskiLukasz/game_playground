@@ -1,8 +1,9 @@
 import { gridState } from "./grid";
+import { updateRenderWindow } from "./render";
 
 const playerPosition = {
-  x: 4,
-  y: 4
+  x: 3,
+  y: 3
 };
 
 const moveUp = () => {
@@ -12,6 +13,7 @@ const moveUp = () => {
       playerPosition.y -= 1;
     }
   }
+  updateRenderWindow();
 }
 
 const moveDown = () => {
@@ -21,6 +23,7 @@ const moveDown = () => {
       playerPosition.y += 1;
     }
   }
+  updateRenderWindow();
 }
 
 const moveLeft = () => {
@@ -30,6 +33,7 @@ const moveLeft = () => {
       playerPosition.x -= 1;
     }
   }
+  updateRenderWindow();
 }
 
 const moveRight = () => {
@@ -39,6 +43,7 @@ const moveRight = () => {
       playerPosition.x += 1;
     }
   }
+  updateRenderWindow();
 }
 
 export { playerPosition, moveRight, moveLeft, moveDown, moveUp };
