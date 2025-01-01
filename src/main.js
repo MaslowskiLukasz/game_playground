@@ -1,4 +1,4 @@
 import './style.css'
-import { initCanvas } from './canvas'
+import { initGameState } from './controls'
 
-initCanvas();
+initGameState();

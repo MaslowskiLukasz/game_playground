@@ -5,13 +5,6 @@ const playerPosition = {
   y: 4
 };
 
-const Direction = {
-  up: 'up',
-  down: 'down',
-  left: 'left',
-  right: 'right'
-};
-
 const moveUp = () => {
   const { x, y } = playerPosition;
   if (y > 0) {
