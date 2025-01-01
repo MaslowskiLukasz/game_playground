@@ -1,0 +1,14 @@
+const NUMBER_OF_SQUARES = 16;
+
+const GRASS_COLOR = '#0f0';
+const WATER_COLOR = '#00f';
+const HOLE_COLOR = '#000';
+const PLAYER_COLOR = '#f00';
+
+export {
+  NUMBER_OF_SQUARES,
+  GRASS_COLOR,
+  WATER_COLOR,
+  HOLE_COLOR,
+  PLAYER_COLOR
+}

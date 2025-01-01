@@ -1,15 +1,9 @@
 import { moveDown, moveLeft, moveRight, moveUp, playerPosition } from "./player";
 import { gridState } from "./grid";
+import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR } from "./constants";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-
-const NUMBER_OF_SQUARES = 16;
-
-const GRASS_COLOR = '#0f0';
-const WATER_COLOR = '#00f';
-const HOLE_COLOR = '#000';
-const PLAYER_COLOR = '#f00';
 
 const getSquareColor = (square) => {
   if (square === 0) {
