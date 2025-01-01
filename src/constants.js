@@ -2,7 +2,7 @@ const NUMBER_OF_SQUARES = 16;
 
 const GRASS_COLOR = '#0f0';
 const WATER_COLOR = '#00f';
-const HOLE_COLOR = '#000';
+const HOLE_COLOR = '#fff';
 const PLAYER_COLOR = '#f00';
 
 export {

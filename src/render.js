@@ -1,4 +1,4 @@
-import { moveDown, moveLeft, moveRight, moveUp, playerPosition } from "./player";
+import { playerPosition } from "./player";
 import { gridState } from "./grid";
 import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR } from "./constants";
 
