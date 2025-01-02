@@ -37,6 +37,8 @@ const updateRenderWindow = () => {
   windowStartPosition.y = checkOutOfBounds(newPosition.y) ? windowStartPosition.y : newPosition.y;
 }
 
+// @TODO: udpate window when user on the edge of it
+
 const clearWindow = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
@@ -46,7 +48,7 @@ const clearWindow = () => {
   }
 }
 
-const redraw = () => {
+const redrawStillCamera = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
       if (playerPosition.x === x && playerPosition.y === y) {
@@ -59,7 +61,7 @@ const redraw = () => {
   }
 }
 
-const redrawWindow = () => {
+const redrawMovingCamera = () => {
   for (let y = 0; y < WINDOW_SIZE; y++) {
     for (let x = 0; x < WINDOW_SIZE; x++) {
       const gridIndex = {
@@ -79,10 +81,10 @@ const redrawWindow = () => {
 const camera = () => {
   switch (CAMERA_MODE) {
     case CAMERA_MODES.movingWindow:
-      redrawWindow();
+      redrawMovingCamera();
       break;
     default:
-      redraw();
+      redrawStillCamera();
   }
 }
 
