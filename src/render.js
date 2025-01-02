@@ -1,6 +1,7 @@
 import { playerPosition } from "./player";
 import { gridState } from "./grid";
-import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR } from "./constants";
+import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR, WINDOW_SIZE } from "./constants";
+import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -9,8 +10,6 @@ let windowStartPosition = {
   x: 0,
   y: 0,
 }
-
-const WINDOW_SIZE = 7;
 
 const getSquareColor = (square) => {
   if (square === 0) {
@@ -60,11 +59,6 @@ const redraw = () => {
   }
 }
 
-const render = () => {
-  clearWindow();
-  redrawWindow();
-}
-
 const redrawWindow = () => {
   for (let y = 0; y < WINDOW_SIZE; y++) {
     for (let x = 0; x < WINDOW_SIZE; x++) {
@@ -80,6 +74,21 @@ const redrawWindow = () => {
       ctx.fillRect(gridIndex.x * NUMBER_OF_SQUARES, gridIndex.y * NUMBER_OF_SQUARES, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
     }
   }
+}
+
+const camera = () => {
+  switch (CAMERA_MODE) {
+    case CAMERA_MODES.movingWindow:
+      redrawWindow();
+      break;
+    default:
+      redraw();
+  }
+}
+
+const render = () => {
+  clearWindow();
+  camera();
 }
 
 export { render, updateRenderWindow };
