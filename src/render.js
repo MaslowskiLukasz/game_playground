@@ -76,7 +76,7 @@ const redrawMovingCamera = () => {
   }
 }
 
-const camera = () => {
+const redraw = () => {
   switch (CAMERA_MODE) {
     case CAMERA_MODES.movingWindow:
       redrawMovingCamera();
@@ -88,7 +88,7 @@ const camera = () => {
 
 const render = () => {
   clearWindow();
-  camera();
+  redraw();
 }
 
 export { render, updateRenderWindow };
