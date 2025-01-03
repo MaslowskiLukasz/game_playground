@@ -8,10 +8,10 @@ const NUMBER_OF_SQUARES = 16;
 const WINDOW_SIZE = 7;
 const CAMERA_MODE = CAMERA_MODES.movingWindow;
 
-const GRASS_COLOR = '#0f0';
-const WATER_COLOR = '#00f';
-const HOLE_COLOR = '#fff';
-const PLAYER_COLOR = '#f00';
+const GRASS_COLOR = '#32c75c';
+const WATER_COLOR = '#198ae1';
+const HOLE_COLOR = '#131a36';
+const PLAYER_COLOR = '#ed3b3b';
 
 export {
   NUMBER_OF_SQUARES,
