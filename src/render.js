@@ -37,8 +37,6 @@ const updateRenderWindow = () => {
   windowStartPosition.y = checkOutOfBounds(newPosition.y) ? windowStartPosition.y : newPosition.y;
 }
 
-// @TODO: udpate window when user on the edge of it
-
 const clearWindow = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
