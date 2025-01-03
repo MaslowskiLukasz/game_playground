@@ -4,6 +4,7 @@ import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR, 
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 
 const canvas = document.getElementById('canvas');
+/** @type (CanvasRenderingContext2D) */
 const ctx = canvas.getContext('2d');
 
 let windowStartPosition = {
@@ -11,6 +12,10 @@ let windowStartPosition = {
   y: 0,
 }
 
+/**
+ * Converts number on tile map to color
+ * @param {number} square
+  */
 const getSquareColor = (square) => {
   if (square === 0) {
     return GRASS_COLOR;
@@ -21,6 +26,10 @@ const getSquareColor = (square) => {
   return HOLE_COLOR;
 }
 
+/**
+ * Check if point is outside of grid map
+ * @param {number} value
+  */
 const checkOutOfBounds = (value) => {
   if (value < 0 || value + WINDOW_SIZE > NUMBER_OF_SQUARES) {
     return true;
