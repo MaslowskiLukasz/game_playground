@@ -4,7 +4,7 @@ import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR, 
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 
 const canvas = document.getElementById('canvas');
-/** @type (CanvasRenderingContext2D) */
+/** @type {CanvasRenderingContext2D} */
 const ctx = canvas.getContext('2d');
 
 let windowStartPosition = {

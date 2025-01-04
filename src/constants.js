@@ -1,11 +1,15 @@
+/** @type (CAMERA_MODES) */
 const CAMERA_MODES = {
   still: "still",
   movingWindow: "movingWindow",
   edgeWindow: "edgeWindow"
 }
 
+/** @type (number) */
 const NUMBER_OF_SQUARES = 16;
+/** @type (number) */
 const WINDOW_SIZE = 7;
+/** @type (CAMERA_MODES) */
 const CAMERA_MODE = CAMERA_MODES.movingWindow;
 
 const GRASS_COLOR = '#32c75c';
