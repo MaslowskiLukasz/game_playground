@@ -2,6 +2,7 @@ import { playerPosition } from "./player";
 import { gridState } from "./grid";
 import { NUMBER_OF_SQUARES, GRASS_COLOR, WATER_COLOR, HOLE_COLOR, PLAYER_COLOR, WINDOW_SIZE } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
+import { movementState, resetMovementState } from "./controls";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
@@ -59,13 +60,15 @@ const redrawStillCamera = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
       if (playerPosition.x === x && playerPosition.y === y) {
-        ctx.fillStyle = PLAYER_COLOR;
+        // ctx.fillStyle = PLAYER_COLOR;
       } else {
         ctx.fillStyle = getSquareColor(gridState[y][x]);
       }
       ctx.fillRect(x * NUMBER_OF_SQUARES, y * NUMBER_OF_SQUARES, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
     }
   }
+  ctx.fillStyle = PLAYER_COLOR;
+  ctx.fillRect(playerPosition.x, playerPosition.y, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
 }
 
 const redrawMovingCamera = () => {
@@ -95,9 +98,25 @@ const redraw = () => {
   }
 }
 
+const SPEED = 5;
+const update = () => {
+  if (movementState.UP) {
+    playerPosition.y -= SPEED;
+  } else if (movementState.DOWN) {
+    playerPosition.y += SPEED;
+  }
+
+  if (movementState.LEFT) {
+    playerPosition.x -= SPEED;
+  } else if (movementState.RIGHT) {
+    playerPosition.x += SPEED;
+  }
+  resetMovementState();
+}
+
 const render = () => {
   clearWindow();
   redraw();
 }
 
-export { render, updateRenderWindow };
+export { render, updateRenderWindow, update };
