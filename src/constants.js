@@ -1,6 +1,7 @@
 const CAMERA_MODES = {
   still: "still",
   movingWindow: "movingWindow",
+  gridMovingWindow: "gridMovingWindow",
   edgeWindow: "edgeWindow"
 }
 

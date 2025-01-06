@@ -1,6 +1,6 @@
 import { render, update, updateRenderWindow } from "./render";
 import { gridState } from "./grid";
-import { playerPosition } from "./player";
+import { Player } from "./player";
 import { NUMBER_OF_SQUARES } from "./constants";
 
 const movementState = {
@@ -44,25 +44,25 @@ const canMove = (position) => {
 }
 
 const moveUp = () => {
-  if (playerPosition.y > 0) {
+  if (Player.position.y > 0) {
     movementState.UP = true;
   }
 }
 
 const moveDown = () => {
-  if (canMove(playerPosition.y)) {
+  if (canMove(Player.position.y)) {
     movementState.DOWN = true;
   }
 }
 
 const moveLeft = () => {
-  if (playerPosition.x > 0) {
+  if (Player.position.x > 0) {
     movementState.LEFT = true;
   }
 }
 
 const moveRight = () => {
-  if (canMove(playerPosition.x)) {
+  if (canMove(Player.position.x)) {
     movementState.RIGHT = true;
   }
 }
