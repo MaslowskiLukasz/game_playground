@@ -7,7 +7,8 @@ initGameState();
 window.requestAnimationFrame(gameLoop);
 
 function gameLoop() {
-  update();
+  // update();
   render();
   window.requestAnimationFrame(gameLoop);
 }
+

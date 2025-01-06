@@ -1,4 +1,4 @@
-import { render, updateRenderWindow } from "./render";
+import { render, update, updateRenderWindow } from "./render";
 import { gridState } from "./grid";
 import { playerPosition } from "./player";
 import { NUMBER_OF_SQUARES } from "./constants";
@@ -29,8 +29,8 @@ const setupEventListener = () => {
         break;
     }
 
+    update();
     updateRenderWindow();
-    render();
   })
 }
 
