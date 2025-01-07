@@ -26,7 +26,7 @@ const updateRenderWindow = () => {
   windowStartPosition.y = checkOutOfBounds(newPosition.y) ? windowStartPosition.y : newPosition.y;
 }
 
-const redrawStillCamera = () => {
+const redrawMap = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
       ctx.fillStyle = getSquareColor(gridState[y][x]);
@@ -42,7 +42,7 @@ const redrawMovingCamera = () => {
   ctx.beginPath();
   ctx.rect(windowStartPosition.x, windowStartPosition.y, WINDOW_WIDTH, WINDOW_WIDTH);
   ctx.clip();
-  redrawStillCamera();
+  redrawMap();
 }
 
 const redrawGridMovingCamera = () => {
@@ -71,7 +71,7 @@ const redraw = () => {
       redrawGridMovingCamera();
       break;
     default:
-      redrawStillCamera();
+      redrawMap();
   }
 }
 
