@@ -1,7 +1,7 @@
 import { render, update, updateRenderWindow } from "./render";
 import { gridState } from "./grid";
 import { Player } from "./player";
-import { NUMBER_OF_SQUARES } from "./constants";
+import { NUMBER_OF_SQUARES, SQUARE_SIZE } from "./constants";
 
 const movementState = {
   UP: false,
@@ -40,7 +40,7 @@ const setupEventListener = () => {
   * @returns {boolean}
   */
 const canMove = (position) => {
-  return position < NUMBER_OF_SQUARES * (NUMBER_OF_SQUARES - 1);
+  return position < SQUARE_SIZE * (NUMBER_OF_SQUARES - 1);
 }
 
 const moveUp = () => {

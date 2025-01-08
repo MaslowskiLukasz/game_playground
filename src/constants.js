@@ -8,12 +8,12 @@ const CAMERA_MODES = {
 /** @type (number) */
 const NUMBER_OF_SQUARES = 16;
 //** @type {number} */
-const SQUARE_SIZE = 16;
+const SQUARE_SIZE = 32;
 /** @type (number) */
 const WINDOW_SIZE = 7;
 /** @type {number} */
 const WINDOW_WIDTH = WINDOW_SIZE * SQUARE_SIZE;
-const CAMERA_MODE = CAMERA_MODES.movingWindow;
+const CAMERA_MODE = CAMERA_MODES.still;
 
 const GRASS_COLOR = '#32c75c';
 const WATER_COLOR = '#198ae1';

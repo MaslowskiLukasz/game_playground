@@ -76,7 +76,7 @@ const Player = {
     x: 0,
     y: 0
   },
-  speed: 4,
+  speed: 8,
   updatePosition() {
     if (movementState.UP) {
       if (!checkCollision('up')) {
