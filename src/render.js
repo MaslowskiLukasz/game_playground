@@ -3,6 +3,7 @@ import { gridState } from "./grid";
 import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
+import { sprites } from "./sprites";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
@@ -33,8 +34,9 @@ const redrawMap = () => {
       ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
-  ctx.fillStyle = PLAYER_COLOR;
-  ctx.fillRect(Player.position.x, Player.position.y, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
+  // ctx.fillStyle = PLAYER_COLOR;
+  // ctx.fillRect(Player.position.x, Player.position.y, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
+  ctx.drawImage(sprites.frog, Player.position.x, Player.position.y, SQUARE_SIZE, SQUARE_SIZE);
 }
 
 
@@ -57,7 +59,7 @@ const redrawGridMovingCamera = () => {
       } else {
         ctx.fillStyle = getSquareColor(gridState[gridIndex.y][gridIndex.x]);
       }
-      ctx.fillRect(gridIndex.x * NUMBER_OF_SQUARES, gridIndex.y * NUMBER_OF_SQUARES, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
+      ctx.fillRect(gridIndex.x * SQUARE_SIZE, gridIndex.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
 }

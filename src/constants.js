@@ -8,7 +8,7 @@ const CAMERA_MODES = {
 /** @type (number) */
 const NUMBER_OF_SQUARES = 16;
 //** @type {number} */
-const SQUARE_SIZE = 16;
+const SQUARE_SIZE = 32;
 /** @type (number) */
 const WINDOW_SIZE = 7;
 /** @type {number} */
