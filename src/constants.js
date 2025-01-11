@@ -13,7 +13,7 @@ const SQUARE_SIZE = 32;
 const WINDOW_SIZE = 7;
 /** @type {number} */
 const WINDOW_WIDTH = WINDOW_SIZE * SQUARE_SIZE;
-const CAMERA_MODE = CAMERA_MODES.still;
+const CAMERA_MODE = CAMERA_MODES.movingWindow;
 
 const GRASS_COLOR = '#32c75c';
 const WATER_COLOR = '#198ae1';
