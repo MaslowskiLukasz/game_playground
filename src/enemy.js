@@ -5,8 +5,8 @@ import { SQUARE_SIZE } from "./constants";
 
 export const Enemy = {
   position: {
-    x: 4,
-    y: 0
+    x: 15,
+    y: 15
   },
   speed: 1,
 }
@@ -52,8 +52,12 @@ class Node {
 }
 
 const isNodeInArray = (node, arr) => {
-  const filteredByPosition = arr.filter((obj) => obj.position.x === node.position.x && obj.position.y === node.position.x);
-  return filteredByPosition.length;
+  // const filteredByPosition = arr.filter((obj) => obj.position.x === node.position.x && obj.position.y === node.position.x);
+  const isInArray = arr.find((e) => {
+    return e.position.x === node.position.x && e.position.y === node.position.y
+  })
+  // return filteredByPosition.length;
+  return isInArray;
 }
 
 const isTargetPosition = (node, targetPosition) => {

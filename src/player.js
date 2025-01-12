@@ -74,7 +74,7 @@ const checkRightSquareGrid = () => {
 const Player = {
   position: {
     x: 4,
-    y: 8
+    y: 0
   },
   speed: 1,
   updatePosition() {
