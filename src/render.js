@@ -1,9 +1,10 @@
 import { Player } from "./player";
 import { gridState } from "./grid";
-import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
+import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH, ENEMY_COLOR } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
 import { sprites } from "./sprites";
+import { Enemy, findPath } from "./enemy";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
@@ -15,7 +16,7 @@ let windowStartPosition = {
 }
 
 const clearWindow = () => {
-  ctx.reset();
+  // ctx.reset();
 }
 
 const updateRenderWindow = () => {
@@ -30,13 +31,17 @@ const updateRenderWindow = () => {
 const redrawMap = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
-      ctx.fillStyle = getSquareColor(gridState[y][x]);
-      ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+      ctx.strokeStyle = getSquareColor(gridState[y][x]);
+      ctx.strokeRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
   // ctx.fillStyle = PLAYER_COLOR;
   // ctx.fillRect(Player.position.x, Player.position.y, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
-  ctx.drawImage(sprites.frog, Player.position.x, Player.position.y, SQUARE_SIZE, SQUARE_SIZE);
+  ctx.fillStyle = ENEMY_COLOR;
+  ctx.fillRect(Enemy.position.x * SQUARE_SIZE, Enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  // ctx.drawImage(sprites.frog, Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  ctx.fillStyle = PLAYER_COLOR;
+  ctx.fillRect(Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
 
@@ -86,4 +91,4 @@ const render = () => {
   redraw();
 }
 
-export { render, updateRenderWindow, update };
+export { render, updateRenderWindow, update, ctx };

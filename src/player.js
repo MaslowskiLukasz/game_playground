@@ -73,10 +73,10 @@ const checkRightSquareGrid = () => {
 
 const Player = {
   position: {
-    x: 0,
-    y: 0
+    x: 4,
+    y: 8
   },
-  speed: 8,
+  speed: 1,
   updatePosition() {
     if (movementState.UP) {
       if (!checkCollision('up')) {
