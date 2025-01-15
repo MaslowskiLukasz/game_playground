@@ -95,15 +95,14 @@ const update = () => {
   clearWindow();
   Player.updatePosition();
   path = findPath(Enemy.position, Player.position);
-  // draw(path);
+  if (path.length) {
+    Enemy.move(path[path.length - 1].position);
+  }
 }
 
 const render = () => {
-  // clearWindow();
+  clearWindow();
   redraw();
-  if (path.length) {
-    draw(path);
-  }
   drawPlayer();
 }
 

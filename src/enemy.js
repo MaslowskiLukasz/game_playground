@@ -9,6 +9,10 @@ export const Enemy = {
     y: 15
   },
   speed: 1,
+  move(position) {
+    this.position.x = position.x;
+    this.position.y = position.y;
+  }
 }
 
 const calculateDistance = (currentPosition, targetPosition) => {
