@@ -7,15 +7,15 @@ import { Player } from './player';
 
 loadSprite();
 initGameState();
-const path = findPath(Enemy.position, Player.position);
-draw(path);
-render();
-console.log(path);
+// const path = findPath(Enemy.position, Player.position);
+// draw(path);
+// render();
+// console.log(path);
 
 window.requestAnimationFrame(gameLoop);
 
 function gameLoop() {
-  // render();
+  render();
   window.requestAnimationFrame(gameLoop);
 }
 

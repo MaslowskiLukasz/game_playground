@@ -5,6 +5,7 @@ import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
 import { sprites } from "./sprites";
 import { Enemy, findPath } from "./enemy";
+import { draw } from "./enemy";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
@@ -16,7 +17,7 @@ let windowStartPosition = {
 }
 
 const clearWindow = () => {
-  // ctx.reset();
+  ctx.reset();
 }
 
 const updateRenderWindow = () => {
@@ -31,8 +32,8 @@ const updateRenderWindow = () => {
 const redrawMap = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
-      ctx.strokeStyle = getSquareColor(gridState[y][x]);
-      ctx.strokeRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+      ctx.fillStyle = getSquareColor(gridState[y][x]);
+      ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
   // ctx.fillStyle = PLAYER_COLOR;
@@ -82,13 +83,28 @@ const redraw = () => {
   }
 }
 
+const drawPlayer = () => {
+  ctx.drawImage(sprites.frog, Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  // ctx.fillStyle = PLAYER_COLOR;
+  // ctx.fillRect(Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+}
+
+let path = [];
+
 const update = () => {
+  clearWindow();
   Player.updatePosition();
+  path = findPath(Enemy.position, Player.position);
+  // draw(path);
 }
 
 const render = () => {
-  clearWindow();
+  // clearWindow();
   redraw();
+  if (path.length) {
+    draw(path);
+  }
+  drawPlayer();
 }
 
 export { render, updateRenderWindow, update, ctx };
