@@ -76,7 +76,7 @@ const Player = {
     x: 0,
     y: 0
   },
-  speed: 1,
+  speed: 4,
   updatePosition() {
     if (movementState.UP) {
       if (!checkCollision('up')) {
@@ -100,6 +100,11 @@ const Player = {
       }
     }
     resetMovementState();
+  },
+  gridPosition() {
+    const x = Math.floor((this.position.x + SQUARE_SIZE / 2) / SQUARE_SIZE);
+    const y = Math.floor((this.position.y + SQUARE_SIZE / 2) / SQUARE_SIZE);
+    return { x, y };
   }
 }
 

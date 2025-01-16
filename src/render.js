@@ -36,13 +36,6 @@ const redrawMap = () => {
       ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
-  // ctx.fillStyle = PLAYER_COLOR;
-  // ctx.fillRect(Player.position.x, Player.position.y, NUMBER_OF_SQUARES, NUMBER_OF_SQUARES);
-  ctx.fillStyle = ENEMY_COLOR;
-  ctx.fillRect(Enemy.position.x * SQUARE_SIZE, Enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-  // ctx.drawImage(sprites.frog, Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-  ctx.fillStyle = PLAYER_COLOR;
-  ctx.fillRect(Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
 
@@ -84,9 +77,12 @@ const redraw = () => {
 }
 
 const drawPlayer = () => {
-  ctx.drawImage(sprites.frog, Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-  // ctx.fillStyle = PLAYER_COLOR;
-  // ctx.fillRect(Player.position.x * SQUARE_SIZE, Player.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  ctx.drawImage(sprites.frog, Player.position.x, Player.position.y, SQUARE_SIZE, SQUARE_SIZE);
+}
+
+const drawEnemy = () => {
+  ctx.fillStyle = ENEMY_COLOR;
+  ctx.fillRect(Enemy.position.x * SQUARE_SIZE, Enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
 let path = [];
@@ -94,16 +90,22 @@ let path = [];
 const update = () => {
   clearWindow();
   Player.updatePosition();
-  path = findPath(Enemy.position, Player.position);
-  if (path.length) {
-    Enemy.move(path[path.length - 1].position);
+}
+
+const updateEnemyPosition = () => {
+  path = findPath(Enemy.position, Player.gridPosition());
+  const pathLength = path.length;
+  if (pathLength) {
+    Enemy.move(path[pathLength - 1].position);
+    path.shift();
   }
 }
 
 const render = () => {
   clearWindow();
   redraw();
+  drawEnemy();
   drawPlayer();
 }
 
-export { render, updateRenderWindow, update, ctx };
+export { render, updateRenderWindow, update, ctx, updateEnemyPosition };

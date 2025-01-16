@@ -94,7 +94,6 @@ export const findPath = (startPosition, targetPosition) => {
     closed.push(bestNode);
     if (isTargetPosition(bestNode, targetPosition)) {
       const path = retracePath(startNode, bestNode);
-      console.log(path);
       return path;
     }
     const siblings = getSiblingNodes(bestNode);

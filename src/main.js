@@ -1,21 +1,21 @@
 import './style.css'
 import { initGameState } from './controls'
-import { render, update } from './render';
+import { render } from './render';
 import { loadSprite } from './sprites';
-import { draw, Enemy, findPath } from './enemy';
-import { Player } from './player';
+import { updateEnemyPosition } from './render';
 
+let lastUpdateTimestamp = 0;
 loadSprite();
 initGameState();
-// const path = findPath(Enemy.position, Player.position);
-// draw(path);
-// render();
-// console.log(path);
 
 window.requestAnimationFrame(gameLoop);
 
-function gameLoop() {
+function gameLoop(timestamp) {
   render();
+  if (timestamp - lastUpdateTimestamp > 600) {
+    updateEnemyPosition();
+    lastUpdateTimestamp = timestamp;
+  }
   window.requestAnimationFrame(gameLoop);
 }
 
