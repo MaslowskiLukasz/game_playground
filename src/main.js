@@ -1,9 +1,8 @@
 import './style.css'
-// import { initGameState } from './controls'
 import { setupEventListener } from './controls';
 import { render } from './render';
 import { loadSprite } from './sprites';
-import { updateEnemyPosition } from './render';
+import { updateEnemiesPosition } from './render';
 
 let lastUpdateTimestamp = 0;
 
@@ -20,7 +19,7 @@ window.requestAnimationFrame(gameLoop);
 function gameLoop(timestamp) {
   render();
   if (timestamp - lastUpdateTimestamp > 600) {
-    updateEnemyPosition();
+    updateEnemiesPosition();
     lastUpdateTimestamp = timestamp;
   }
   window.requestAnimationFrame(gameLoop);

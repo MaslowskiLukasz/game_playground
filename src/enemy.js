@@ -26,7 +26,11 @@ const Enemy = {
       this.changePosition(this.getLastPathElementPosition());
       this.path.shift();
     }
-  }
+  },
+  updatePosition() {
+    this.findPath();
+    this.move();
+  },
 }
 
 export { Enemy };

@@ -90,9 +90,8 @@ const update = () => {
   Player.updatePosition();
 }
 
-const updateEnemyPosition = () => {
-  Enemy.findPath();
-  Enemy.move();
+const updateEnemiesPosition = () => {
+  Enemy.updatePosition();
 }
 
 const render = () => {
@@ -102,4 +101,4 @@ const render = () => {
   drawPlayer();
 }
 
-export { render, updateRenderWindow, update, ctx, updateEnemyPosition };
+export { render, updateRenderWindow, update, ctx, updateEnemiesPosition };
