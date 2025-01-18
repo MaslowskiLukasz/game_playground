@@ -85,20 +85,14 @@ const drawEnemy = () => {
   ctx.fillRect(Enemy.position.x * SQUARE_SIZE, Enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
-let path = [];
-
 const update = () => {
   clearWindow();
   Player.updatePosition();
 }
 
 const updateEnemyPosition = () => {
-  path = findPath(Enemy.position, Player.gridPosition());
-  const pathLength = path.length;
-  if (pathLength) {
-    Enemy.move(path[pathLength - 1].position);
-    path.shift();
-  }
+  Enemy.findPath();
+  Enemy.move();
 }
 
 const render = () => {
