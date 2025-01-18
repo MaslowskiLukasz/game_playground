@@ -4,8 +4,8 @@ import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
 import { sprites } from "./sprites";
-import { Enemy, findPath } from "./enemy";
-import { draw } from "./enemy";
+import { Enemy } from "./enemy";
+import { findPath } from "./pathFinding";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */

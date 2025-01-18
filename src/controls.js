@@ -1,5 +1,4 @@
-import { render, update, updateRenderWindow } from "./render";
-import { gridState } from "./grid";
+import { update, updateRenderWindow } from "./render";
 import { Player } from "./player";
 import { NUMBER_OF_SQUARES, SQUARE_SIZE } from "./constants";
 
@@ -74,10 +73,5 @@ const resetMovementState = () => {
   movementState.RIGHT = false;
 }
 
-const initGameState = () => {
-  render();
-  setupEventListener();
-}
 
-
-export { initGameState, resetMovementState, movementState }
+export { setupEventListener, resetMovementState, movementState }

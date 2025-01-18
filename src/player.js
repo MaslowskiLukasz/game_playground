@@ -2,6 +2,43 @@ import { SQUARE_SIZE } from "./constants";
 import { resetMovementState, movementState } from "./controls";
 import { gridState } from "./grid";
 
+const Player = {
+  position: {
+    x: 0,
+    y: 0
+  },
+  speed: 8,
+  updatePosition() {
+    if (movementState.UP) {
+      if (!checkCollision('up')) {
+        Player.position.y -= Player.speed;
+      }
+    }
+    if (movementState.DOWN) {
+      if (!checkCollision('down')) {
+        Player.position.y += Player.speed;
+      }
+    }
+
+    if (movementState.LEFT) {
+      if (!checkCollision('left')) {
+        Player.position.x -= Player.speed;
+      }
+    }
+    if (movementState.RIGHT) {
+      if (!checkCollision('right')) {
+        Player.position.x += Player.speed;
+      }
+    }
+    resetMovementState();
+  },
+  gridPosition() {
+    const x = Math.floor((this.position.x + SQUARE_SIZE / 2) / SQUARE_SIZE);
+    const y = Math.floor((this.position.y + SQUARE_SIZE / 2) / SQUARE_SIZE);
+    return { x, y };
+  }
+}
+
 /** 
  * Check collision with map elements
  * @param {string} direction
@@ -70,42 +107,5 @@ const checkRightSquareGrid = () => {
   }
   return false;
 };
-
-const Player = {
-  position: {
-    x: 0,
-    y: 0
-  },
-  speed: 4,
-  updatePosition() {
-    if (movementState.UP) {
-      if (!checkCollision('up')) {
-        Player.position.y -= Player.speed;
-      }
-    }
-    if (movementState.DOWN) {
-      if (!checkCollision('down')) {
-        Player.position.y += Player.speed;
-      }
-    }
-
-    if (movementState.LEFT) {
-      if (!checkCollision('left')) {
-        Player.position.x -= Player.speed;
-      }
-    }
-    if (movementState.RIGHT) {
-      if (!checkCollision('right')) {
-        Player.position.x += Player.speed;
-      }
-    }
-    resetMovementState();
-  },
-  gridPosition() {
-    const x = Math.floor((this.position.x + SQUARE_SIZE / 2) / SQUARE_SIZE);
-    const y = Math.floor((this.position.y + SQUARE_SIZE / 2) / SQUARE_SIZE);
-    return { x, y };
-  }
-}
 
 export { Player };
