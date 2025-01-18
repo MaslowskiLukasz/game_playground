@@ -2,28 +2,22 @@ import { NUMBER_OF_SQUARES, PATH_COLOR } from "./constants";
 import { gridState } from "./grid";
 import { ctx } from "./render";
 import { SQUARE_SIZE } from "./constants";
+import { Node, Position } from "./types";
 
-class Node {
-  constructor(position) {
-    this.parent = {};
-    this.distanceFromStart = 0;
-    this.distanceFromTarget = 0;
-    this.pathFindingValue = 0;
-    this.position = position;
-  }
-  updatePathFindingValue() {
-    this.pathFindingValue = this.distanceFromTarget + this.distanceFromStart;
-  }
-}
-
+/**
+ * Calculate distance between two grid positions (x,y)
+ * @param {Position} currentPosition
+ * @param {Position} targetPosition
+ * @returns {number}
+ */
 const calculateDistance = (currentPosition, targetPosition) => {
   return Math.abs(targetPosition.x - currentPosition.x) + Math.abs(targetPosition.y - currentPosition.y);
 }
 
 /**
  * Get sibling squares, not diagonal
+ * @param {Node} node
  */
-
 const getSiblingNodes = (node) => {
   const results = [];
   const { x, y } = node.position;
@@ -43,6 +37,11 @@ const getSiblingNodes = (node) => {
   return results;
 }
 
+/** Checks if node exists in array
+ * @param {Node} node
+ * @param {Array} arr Array to check
+ * @returns {boolean}
+ */
 const isNodeInArray = (node, arr) => {
   const isInArray = arr.find((e) => {
     return e.position.x === node.position.x && e.position.y === node.position.y
@@ -50,10 +49,22 @@ const isNodeInArray = (node, arr) => {
   return isInArray;
 }
 
+/**
+ * Checks if node is target position
+ * @param {Node} node
+ * @param {Position} targetPosition
+ * @returns {boolean}
+ */
 const isTargetPosition = (node, targetPosition) => {
   return node.position.x === targetPosition.x && node.position.y === targetPosition.y;
 }
 
+/**
+ * Get path from algorithm results
+ * @param {Node} start
+ * @param {Node} end
+ * @returns {Node[]}
+ */
 const retracePath = (start, end) => {
   const path = [];
   let currentNode = { ...end };
@@ -66,8 +77,12 @@ const retracePath = (start, end) => {
   return path;
 }
 
+
 /**
- * Get best path: startPosition, targetPosition {x,y}
+ * Find shortest path between two positions
+ * @param {Position} startPosition
+ * @param {Position} targetPosition
+ * @returns {(Node|null)}
  */
 const findPath = (startPosition, targetPosition) => {
   const startNode = new Node(startPosition);
@@ -101,8 +116,13 @@ const findPath = (startPosition, targetPosition) => {
       }
     }
   }
+  return null;
 }
 
+/**
+ * Draw path
+ * @param {Node[]} arr
+ */
 const draw = (arr) => {
   for (let node of arr) {
     ctx.fillStyle = PATH_COLOR;
