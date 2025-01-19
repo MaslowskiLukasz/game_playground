@@ -4,7 +4,8 @@ import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
 import { sprites } from "./sprites";
-import { Enemy } from "./enemy";
+// import { Enemy } from "./enemy";
+import { enemy } from "./enemy";
 import { findPath } from "./pathFinding";
 
 const canvas = document.getElementById('canvas');
@@ -82,7 +83,7 @@ const drawPlayer = () => {
 
 const drawEnemy = () => {
   ctx.fillStyle = ENEMY_COLOR;
-  ctx.fillRect(Enemy.position.x * SQUARE_SIZE, Enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  ctx.fillRect(enemy.position.x * SQUARE_SIZE, enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
 }
 
 const update = () => {
@@ -91,7 +92,7 @@ const update = () => {
 }
 
 const updateEnemiesPosition = () => {
-  Enemy.updatePosition();
+  enemy.updatePosition();
 }
 
 const render = () => {
