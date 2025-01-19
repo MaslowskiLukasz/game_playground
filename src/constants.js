@@ -13,12 +13,14 @@ const SQUARE_SIZE = 32;
 const WINDOW_SIZE = 7;
 /** @type {number} */
 const WINDOW_WIDTH = WINDOW_SIZE * SQUARE_SIZE;
-const CAMERA_MODE = CAMERA_MODES.movingWindow;
+const CAMERA_MODE = CAMERA_MODES.still;
 
 const GRASS_COLOR = '#32c75c';
 const WATER_COLOR = '#198ae1';
 const HOLE_COLOR = '#131a36';
 const PLAYER_COLOR = '#ed3b3b';
+const ENEMY_COLOR = '#f0f';
+const PATH_COLOR = '#0ff';
 
 export {
   NUMBER_OF_SQUARES,
@@ -27,6 +29,8 @@ export {
   WATER_COLOR,
   HOLE_COLOR,
   PLAYER_COLOR,
+  ENEMY_COLOR,
+  PATH_COLOR,
   WINDOW_SIZE,
   WINDOW_WIDTH,
   CAMERA_MODE,

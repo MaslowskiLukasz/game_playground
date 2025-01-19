@@ -1,5 +1,4 @@
-import { render, update, updateRenderWindow } from "./render";
-import { gridState } from "./grid";
+import { update, updateRenderWindow } from "./render";
 import { Player } from "./player";
 import { NUMBER_OF_SQUARES, SQUARE_SIZE } from "./constants";
 
@@ -10,28 +9,35 @@ const movementState = {
   RIGHT: false
 }
 
+/**
+ * Call movement funcitons and update Player position and render window
+ * @param {KeyboardEvent} event
+ */
+const executeMovement = (event) => {
+  const key = event.key;
+
+  switch (key) {
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+    case 'ArrowRight':
+      moveRight();
+      break;
+    case 'ArrowUp':
+      moveUp();
+      break;
+    case 'ArrowDown':
+      moveDown();
+      break;
+  }
+
+  update();
+  updateRenderWindow();
+}
+
+/** Sets up event listeners for movement */
 const setupEventListener = () => {
-  window.addEventListener('keydown', (event) => {
-    const key = event.key;
-
-    switch (key) {
-      case 'ArrowLeft':
-        moveLeft();
-        break;
-      case 'ArrowRight':
-        moveRight();
-        break;
-      case 'ArrowUp':
-        moveUp();
-        break;
-      case 'ArrowDown':
-        moveDown();
-        break;
-    }
-
-    update();
-    updateRenderWindow();
-  })
+  window.addEventListener('keydown', (event) => executeMovement(event))
 }
 
 /**
@@ -43,30 +49,37 @@ const canMove = (position) => {
   return position < SQUARE_SIZE * (NUMBER_OF_SQUARES - 1);
 }
 
+/** Checks if Player can move up */
 const moveUp = () => {
   if (Player.position.y > 0) {
     movementState.UP = true;
   }
 }
 
+/** Checks if Player can move down */
 const moveDown = () => {
   if (canMove(Player.position.y)) {
     movementState.DOWN = true;
   }
 }
 
+/** Checks if Player can move left */
 const moveLeft = () => {
   if (Player.position.x > 0) {
     movementState.LEFT = true;
   }
 }
 
+/** Checks if Player can move right */
 const moveRight = () => {
   if (canMove(Player.position.x)) {
     movementState.RIGHT = true;
   }
 }
 
+/**
+ * Resets movement state
+ */
 const resetMovementState = () => {
   movementState.UP = false;
   movementState.DOWN = false;
@@ -74,10 +87,5 @@ const resetMovementState = () => {
   movementState.RIGHT = false;
 }
 
-const initGameState = () => {
-  render();
-  setupEventListener();
-}
 
-
-export { initGameState, resetMovementState, movementState }
+export { setupEventListener, resetMovementState, movementState }
