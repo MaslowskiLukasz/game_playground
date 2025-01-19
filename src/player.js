@@ -56,6 +56,10 @@ const checkCollision = (direction) => {
   }
 }
 
+/**
+ * Check squares to top left and top right from player
+ * @returns {boolean}
+ */
 const checkUpSquareGrid = () => {
   const y = Math.floor((Player.position.y - Player.speed) / SQUARE_SIZE);
   const xLeft = Math.floor(Player.position.x / SQUARE_SIZE);
@@ -69,6 +73,10 @@ const checkUpSquareGrid = () => {
   return false;
 }
 
+/**
+ * Check squares to down left and down right from player
+ * @returns {boolean}
+ */
 const checkDownSquareGrid = () => {
   const y = Math.ceil((Player.position.y + Player.speed) / SQUARE_SIZE);
   const xLeft = Math.floor(Player.position.x / SQUARE_SIZE);
@@ -82,6 +90,10 @@ const checkDownSquareGrid = () => {
   return false;
 };
 
+/**
+ * Check squares to left top and left down from player
+ * @returns {boolean}
+ */
 const checkLeftSquareGrid = () => {
   const yTop = Math.ceil(Player.position.y / SQUARE_SIZE);
   const yDown = Math.floor(Player.position.y / SQUARE_SIZE);
@@ -95,6 +107,10 @@ const checkLeftSquareGrid = () => {
   return false;
 };
 
+/**
+ * Check squares to right top and right down from player
+ * @returns {boolean}
+ */
 const checkRightSquareGrid = () => {
   const yTop = Math.ceil(Player.position.y / SQUARE_SIZE);
   const yDown = Math.floor(Player.position.y / SQUARE_SIZE);
