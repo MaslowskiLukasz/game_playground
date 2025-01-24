@@ -3,14 +3,12 @@ import { movementState } from "./controls";
 import { gridState } from "./grid";
 import { sprites } from "./sprites";
 
-let currentFrame = 0;
-
 const Player = {
   position: {
     x: 0,
     y: 0
   },
-  speed: 8,
+  speed: 1,
   updatePosition() {
     if (movementState.UP) {
       if (!checkCollision('up')) {

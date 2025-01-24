@@ -5,7 +5,6 @@ import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
 import { enemy } from "./enemy";
 import { Position } from "./types";
-import { drawTest } from "./controls";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
@@ -85,7 +84,6 @@ const render = () => {
   redraw();
   enemy.draw(ctx);
   Player.draw(ctx);
-  drawTest(ctx);
 }
 
 export { render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };

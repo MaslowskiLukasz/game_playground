@@ -1,17 +1,16 @@
 import './style.css'
-import { setupEventListener, keyUpEventListener, keyDownEventListener, Test, animate, resetAnimate } from './controls';
+import { setupEventListener } from './controls';
 import { render } from './render';
 import { loadSprite } from './sprites';
 import { updateEnemiesPosition } from './render';
 import { clearWindow } from './render';
+import { Player } from './player';
 
 let lastUpdateTimestamp = 0;
 
 const initGameState = () => {
   render();
   setupEventListener();
-  keyDownEventListener();
-  keyUpEventListener();
 }
 
 loadSprite();
@@ -19,17 +18,12 @@ initGameState();
 
 window.requestAnimationFrame(gameLoop);
 
-let count = 0;
+// count slows down the animation
+// need to figure out diagonal movement
+// fix out of bounds
 function gameLoop(timestamp) {
-  if (animate) {
-    count = count + 1;
-
-    if (count > 20) {
-      Test.changeCurrentFrame();
-      count = 0;
-    }
-  }
   clearWindow();
+  Player.updatePosition();
   render();
   if (timestamp - lastUpdateTimestamp > 600) {
     updateEnemiesPosition();
