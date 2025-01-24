@@ -28,9 +28,6 @@ const executeMovement = (event) => {
       moveDown();
       break;
   }
-
-  // Player.updatePosition();
-  // resetMovementState();
 }
 
 /** Sets up event listeners for movement */
@@ -55,40 +52,32 @@ const setupEventListener = () => {
 }
 
 /**
- * Check if player can move
+ * Check if player can move used for down, and right edge of canvas
   * @param {number} position
   * @returns {boolean}
   */
-const canMove = (position) => {
+const checkEndPosition = (position) => {
   return position < SQUARE_SIZE * (NUMBER_OF_SQUARES - 1);
 }
 
 /** Checks if Player can move up */
 const moveUp = () => {
-  if (Player.position.y > 0) {
-    movementState.UP = true;
-  }
+  movementState.UP = true;
 }
 
 /** Checks if Player can move down */
 const moveDown = () => {
-  if (canMove(Player.position.y)) {
-    movementState.DOWN = true;
-  }
+  movementState.DOWN = true;
 }
 
 /** Checks if Player can move left */
 const moveLeft = () => {
-  if (Player.position.x > 0) {
-    movementState.LEFT = true;
-  }
+  movementState.LEFT = true;
 }
 
 /** Checks if Player can move right */
 const moveRight = () => {
-  if (canMove(Player.position.x)) {
-    movementState.RIGHT = true;
-  }
+  movementState.RIGHT = true;
 }
 
 export {
