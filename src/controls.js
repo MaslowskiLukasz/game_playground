@@ -14,9 +14,7 @@ const movementState = {
  * @param {KeyboardEvent} event
  */
 const executeMovement = (event) => {
-  const key = event.key;
-
-  switch (key) {
+  switch (event.key) {
     case 'ArrowLeft':
       moveLeft();
       break;

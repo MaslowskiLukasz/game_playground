@@ -3,6 +3,7 @@ import { movementState } from "./controls";
 import { gridState } from "./grid";
 import { sprites } from "./sprites";
 import { animate } from "./animation";
+import { checkInBoundWorld } from "./helpers";
 
 const Player = {
   position: {
@@ -12,23 +13,27 @@ const Player = {
   speed: 1,
   updatePosition() {
     if (movementState.UP) {
-      if (!checkCollision('up')) {
-        Player.position.y -= Player.speed;
+      const newPosition = Player.position.y - Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('up')) {
+        Player.position.y = newPosition;
       }
     }
     if (movementState.DOWN) {
-      if (!checkCollision('down')) {
+      const newPosition = Player.position.y + Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
         Player.position.y += Player.speed;
       }
     }
 
     if (movementState.LEFT) {
-      if (!checkCollision('left')) {
+      const newPosition = Player.position.x - Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('left')) {
         Player.position.x -= Player.speed;
       }
     }
     if (movementState.RIGHT) {
-      if (!checkCollision('right')) {
+      const newPosition = Player.position.x + Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('right')) {
         Player.position.x += Player.speed;
       }
     }
@@ -92,6 +97,7 @@ const checkCollision = (direction) => {
  */
 const checkUpSquareGrid = () => {
   const y = Math.floor((Player.position.y - Player.speed) / SQUARE_SIZE);
+  console.log(`y = ${y}`);
   const xLeft = Math.floor(Player.position.x / SQUARE_SIZE);
   const xRight = Math.ceil(Player.position.x / SQUARE_SIZE);
   const leftValue = gridState[y][xLeft];

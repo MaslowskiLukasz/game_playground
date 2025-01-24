@@ -24,4 +24,13 @@ const checkOutOfBounds = (value) => {
   return false;
 }
 
-export { getSquareColor, checkOutOfBounds };
+/**
+ * Check if player can move used for down, and right edge of canvas
+  * @param {number} position
+  * @returns {boolean}
+  */
+const checkInBoundWorld = (position) => {
+  return position <= SQUARE_SIZE * (NUMBER_OF_SQUARES - 1) && position > 0;
+}
+
+export { getSquareColor, checkOutOfBounds, checkInBoundWorld };
