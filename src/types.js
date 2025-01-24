@@ -86,4 +86,11 @@ class Enemy {
   }
 }
 
+/**
+ * @typedef Animation
+ * @type {object}
+ * @property {number} currentFrame
+ * @property {number} animationCount
+ */
+
 export { Node, Position, Enemy };

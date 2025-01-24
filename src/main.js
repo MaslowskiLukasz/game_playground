@@ -18,9 +18,6 @@ initGameState();
 
 window.requestAnimationFrame(gameLoop);
 
-// count slows down the animation
-// need to figure out diagonal movement
-// fix out of bounds
 function gameLoop(timestamp) {
   clearWindow();
   Player.updatePosition();

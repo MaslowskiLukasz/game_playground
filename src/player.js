@@ -2,6 +2,7 @@ import { SQUARE_SIZE } from "./constants";
 import { movementState } from "./controls";
 import { gridState } from "./grid";
 import { sprites } from "./sprites";
+import { animate } from "./animation";
 
 const Player = {
   position: {
@@ -39,13 +40,6 @@ const Player = {
   },
   movementAnimationCount: 0,
   currentFrame: 0,
-  changeCurrentFrame() {
-    const maxFrames = 3;
-    this.currentFrame = this.currentFrame + 1;
-    if (this.currentFrame >= maxFrames) {
-      this.currentFrame = 0;
-    }
-  },
   /** @param {CanvasRenderingContext2D} ctx */
   draw(ctx) {
     if (movementState.RIGHT === true ||
@@ -53,11 +47,9 @@ const Player = {
       movementState.UP === true ||
       movementState.DOWN === true
     ) {
-      this.movementAnimationCount = this.movementAnimationCount + 1;
-      if (this.movementAnimationCount > 10) {
-        this.changeCurrentFrame();
-        this.movementAnimationCount = 0;
-      }
+      const { currentFrame, animationCount } = animate(3, this.currentFrame, this.movementAnimationCount);
+      this.currentFrame = currentFrame;
+      this.movementAnimationCount = animationCount;
     } else {
       this.movementAnimationCount = 0;
       this.currentFrame = 0;
