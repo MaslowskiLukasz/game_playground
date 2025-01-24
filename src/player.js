@@ -1,6 +1,9 @@
 import { SQUARE_SIZE } from "./constants";
-import { resetMovementState, movementState } from "./controls";
+import { movementState } from "./controls";
 import { gridState } from "./grid";
+import { sprites } from "./sprites";
+
+let currentFrame = 0;
 
 const Player = {
   position: {
@@ -30,12 +33,49 @@ const Player = {
         Player.position.x += Player.speed;
       }
     }
-    resetMovementState();
   },
   gridPosition() {
     const x = Math.floor((this.position.x + SQUARE_SIZE / 2) / SQUARE_SIZE);
     const y = Math.floor((this.position.y + SQUARE_SIZE / 2) / SQUARE_SIZE);
     return { x, y };
+  },
+  movementAnimationCount: 0,
+  currentFrame: 0,
+  changeCurrentFrame() {
+    const maxFrames = 3;
+    this.currentFrame = this.currentFrame + 1;
+    if (this.currentFrame >= maxFrames) {
+      this.currentFrame = 0;
+    }
+  },
+  /** @param {CanvasRenderingContext2D} ctx */
+  draw(ctx) {
+    if (movementState.RIGHT === true ||
+      movementState.LEFT === true ||
+      movementState.UP === true ||
+      movementState.DOWN === true
+    ) {
+      this.movementAnimationCount = this.movementAnimationCount + 1;
+      if (this.movementAnimationCount > 10) {
+        this.changeCurrentFrame();
+        this.movementAnimationCount = 0;
+      }
+    } else {
+      this.movementAnimationCount = 0;
+      this.currentFrame = 0;
+    }
+
+    ctx.drawImage(
+      sprites.frog,
+      this.currentFrame * SQUARE_SIZE,
+      0,
+      SQUARE_SIZE,
+      SQUARE_SIZE,
+      Player.position.x,
+      Player.position.y,
+      SQUARE_SIZE,
+      SQUARE_SIZE
+    );
   }
 }
 

@@ -1,6 +1,6 @@
-import { update, updateRenderWindow } from "./render";
 import { Player } from "./player";
 import { NUMBER_OF_SQUARES, SQUARE_SIZE } from "./constants";
+import { sprites } from "./sprites";
 
 const movementState = {
   UP: false,
@@ -31,13 +31,16 @@ const executeMovement = (event) => {
       break;
   }
 
-  update();
-  updateRenderWindow();
+  Player.updatePosition();
+  // resetMovementState();
 }
 
 /** Sets up event listeners for movement */
 const setupEventListener = () => {
   window.addEventListener('keydown', (event) => executeMovement(event))
+  window.addEventListener('keyup', () => {
+    resetMovementState();
+  })
 }
 
 /**
@@ -87,5 +90,62 @@ const resetMovementState = () => {
   movementState.RIGHT = false;
 }
 
+let animate = false;
+const resetAnimate = () => {
+  animate = false;
+}
+const Test = {
+  position: {
+    x: 0,
+    y: 120
+  },
+  currentFrame: 0,
+  changeCurrentFrame() {
+    const maxFrames = 3;
+    this.currentFrame = this.currentFrame + 1;
+    if (this.currentFrame >= maxFrames) {
+      this.currentFrame = 0;
+    }
+  },
+}
 
-export { setupEventListener, resetMovementState, movementState }
+/** @param {CanvasRenderingContext2D} ctx */
+const drawTest = (ctx) => {
+  ctx.drawImage(
+    sprites.frog,
+    Test.currentFrame * SQUARE_SIZE,
+    0,
+    SQUARE_SIZE,
+    SQUARE_SIZE,
+    Test.position.x,
+    Test.position.y,
+    SQUARE_SIZE,
+    SQUARE_SIZE
+  );
+}
+const keyDownEventListener = () => {
+  window.addEventListener('keydown', (event) => {
+    if (event.key === ' ') {
+      animate = true;
+    }
+  });
+}
+const keyUpEventListener = () => {
+  window.addEventListener('keyup', (event) => {
+    if (event.key === ' ') {
+      animate = false;
+    }
+  })
+}
+
+export {
+  setupEventListener,
+  resetMovementState,
+  movementState,
+  keyDownEventListener,
+  keyUpEventListener,
+  Test,
+  animate,
+  drawTest,
+  resetAnimate,
+}

@@ -1,5 +1,7 @@
 import { findPath } from "./pathFinding";
 import { Player } from "./player";
+import { ENEMY_COLOR } from "./constants";
+import { SQUARE_SIZE } from "./constants";
 
 class Node {
   /** @param {Position} position */
@@ -75,6 +77,13 @@ class Enemy {
     this.findPath();
     this.move();
   };
+  /** Draw enemy
+  * @param {CanvasRenderingContext2D} ctx
+  */
+  draw(ctx) {
+    ctx.fillStyle = ENEMY_COLOR;
+    ctx.fillRect(this.position.x * SQUARE_SIZE, this.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+  }
 }
 
 export { Node, Position, Enemy };
