@@ -51,15 +51,6 @@ const setupEventListener = () => {
   })
 }
 
-/**
- * Check if player can move used for down, and right edge of canvas
-  * @param {number} position
-  * @returns {boolean}
-  */
-const checkEndPosition = (position) => {
-  return position < SQUARE_SIZE * (NUMBER_OF_SQUARES - 1);
-}
-
 /** Checks if Player can move up */
 const moveUp = () => {
   movementState.UP = true;
