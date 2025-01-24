@@ -97,7 +97,6 @@ const checkCollision = (direction) => {
  */
 const checkUpSquareGrid = () => {
   const y = Math.floor((Player.position.y - Player.speed) / SQUARE_SIZE);
-  console.log(`y = ${y}`);
   const xLeft = Math.floor(Player.position.x / SQUARE_SIZE);
   const xRight = Math.ceil(Player.position.x / SQUARE_SIZE);
   const leftValue = gridState[y][xLeft];

@@ -30,7 +30,7 @@ const checkOutOfBounds = (value) => {
   * @returns {boolean}
   */
 const checkInBoundWorld = (position) => {
-  return position <= SQUARE_SIZE * (NUMBER_OF_SQUARES - 1) && position > 0;
+  return position <= SQUARE_SIZE * (NUMBER_OF_SQUARES - 1) && position >= 0;
 }
 
 export { getSquareColor, checkOutOfBounds, checkInBoundWorld };
