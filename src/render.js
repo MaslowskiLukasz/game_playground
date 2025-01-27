@@ -1,17 +1,16 @@
 import { Player } from "./player";
 import { gridState } from "./grid";
-import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH, ENEMY_COLOR } from "./constants";
+import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
 import { getSquareColor, checkOutOfBounds } from "./helpers";
-import { sprites } from "./sprites";
-// import { Enemy } from "./enemy";
 import { enemy } from "./enemy";
-import { findPath } from "./pathFinding";
+import { Position } from "./types";
 
 const canvas = document.getElementById('canvas');
 /** @type {CanvasRenderingContext2D} */
 const ctx = canvas.getContext('2d');
 
+/** @type {Position} */
 let windowStartPosition = {
   x: 0,
   y: 0,
@@ -38,7 +37,6 @@ const redrawMap = () => {
     }
   }
 }
-
 
 const redrawMovingCamera = () => {
   ctx.beginPath();
@@ -77,20 +75,6 @@ const redraw = () => {
   }
 }
 
-const drawPlayer = () => {
-  ctx.drawImage(sprites.frog, Player.position.x, Player.position.y, SQUARE_SIZE, SQUARE_SIZE);
-}
-
-const drawEnemy = () => {
-  ctx.fillStyle = ENEMY_COLOR;
-  ctx.fillRect(enemy.position.x * SQUARE_SIZE, enemy.position.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
-}
-
-const update = () => {
-  clearWindow();
-  Player.updatePosition();
-}
-
 const updateEnemiesPosition = () => {
   enemy.updatePosition();
 }
@@ -98,8 +82,8 @@ const updateEnemiesPosition = () => {
 const render = () => {
   clearWindow();
   redraw();
-  drawEnemy();
-  drawPlayer();
+  enemy.draw(ctx);
+  Player.draw(ctx);
 }
 
-export { render, updateRenderWindow, update, ctx, updateEnemiesPosition };
+export { render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };

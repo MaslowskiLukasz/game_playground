@@ -1,41 +1,76 @@
 import { SQUARE_SIZE } from "./constants";
-import { resetMovementState, movementState } from "./controls";
+import { movementState } from "./controls";
 import { gridState } from "./grid";
+import { sprites } from "./sprites";
+import { animate } from "./animation";
+import { checkInBoundWorld } from "./helpers";
 
 const Player = {
   position: {
     x: 0,
     y: 0
   },
-  speed: 8,
+  speed: 1,
   updatePosition() {
     if (movementState.UP) {
-      if (!checkCollision('up')) {
-        Player.position.y -= Player.speed;
+      const newPosition = Player.position.y - Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('up')) {
+        Player.position.y = newPosition;
       }
     }
     if (movementState.DOWN) {
-      if (!checkCollision('down')) {
+      const newPosition = Player.position.y + Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
         Player.position.y += Player.speed;
       }
     }
 
     if (movementState.LEFT) {
-      if (!checkCollision('left')) {
+      const newPosition = Player.position.x - Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('left')) {
         Player.position.x -= Player.speed;
       }
     }
     if (movementState.RIGHT) {
-      if (!checkCollision('right')) {
+      const newPosition = Player.position.x + Player.speed;
+      if (checkInBoundWorld(newPosition) && !checkCollision('right')) {
         Player.position.x += Player.speed;
       }
     }
-    resetMovementState();
   },
   gridPosition() {
     const x = Math.floor((this.position.x + SQUARE_SIZE / 2) / SQUARE_SIZE);
     const y = Math.floor((this.position.y + SQUARE_SIZE / 2) / SQUARE_SIZE);
     return { x, y };
+  },
+  movementAnimationCount: 0,
+  currentFrame: 0,
+  /** @param {CanvasRenderingContext2D} ctx */
+  draw(ctx) {
+    if (movementState.RIGHT === true ||
+      movementState.LEFT === true ||
+      movementState.UP === true ||
+      movementState.DOWN === true
+    ) {
+      const { currentFrame, animationCount } = animate(3, this.currentFrame, this.movementAnimationCount);
+      this.currentFrame = currentFrame;
+      this.movementAnimationCount = animationCount;
+    } else {
+      this.movementAnimationCount = 0;
+      this.currentFrame = 0;
+    }
+
+    ctx.drawImage(
+      sprites.frog,
+      this.currentFrame * SQUARE_SIZE,
+      0,
+      SQUARE_SIZE,
+      SQUARE_SIZE,
+      Player.position.x,
+      Player.position.y,
+      SQUARE_SIZE,
+      SQUARE_SIZE
+    );
   }
 }
 
