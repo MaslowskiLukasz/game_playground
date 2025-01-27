@@ -1,3 +1,5 @@
+import { canvas } from "./render";
+
 const movementState = {
   UP: false,
   DOWN: false,
@@ -11,16 +13,16 @@ const movementState = {
  */
 const executeMovement = (event) => {
   switch (event.key) {
-    case 'ArrowLeft':
+    case 'a':
       movementState.LEFT = true;
       break;
-    case 'ArrowRight':
+    case 'd':
       movementState.RIGHT = true;
       break;
-    case 'ArrowUp':
+    case 'w':
       movementState.UP = true;
       break;
-    case 'ArrowDown':
+    case 's':
       movementState.DOWN = true;
       break;
   }
@@ -31,16 +33,16 @@ const executeMovement = (event) => {
  */
 const resetMovement = (event) => {
   switch (event.key) {
-    case 'ArrowLeft':
+    case 'a':
       movementState.LEFT = false;
       break;
-    case 'ArrowRight':
+    case 'd':
       movementState.RIGHT = false;
       break;
-    case 'ArrowUp':
+    case 'w':
       movementState.UP = false;
       break;
-    case 'ArrowDown':
+    case 's':
       movementState.DOWN = false;
       break;
   }
@@ -50,6 +52,7 @@ const resetMovement = (event) => {
 const setupEventListener = () => {
   window.addEventListener('keydown', (event) => executeMovement(event));
   window.addEventListener('keyup', (event) => resetMovement(event));
+  canvas.addEventListener('click', (event) => console.log(event));
 }
 
 export {

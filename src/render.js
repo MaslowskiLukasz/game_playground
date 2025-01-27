@@ -86,4 +86,4 @@ const render = () => {
   Player.draw(ctx);
 }
 
-export { render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };
+export { canvas, render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };
