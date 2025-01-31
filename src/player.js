@@ -4,6 +4,7 @@ import { gridState } from "./grid";
 import { sprites } from "./sprites";
 import { animate } from "./animation";
 import { checkInBoundWorld } from "./helpers";
+import { canvas } from "./render";
 
 const Player = {
   position: {
@@ -19,8 +20,7 @@ const Player = {
       }
     }
     if (movementState.DOWN) {
-      const newPosition = Player.position.y + Player.speed;
-      if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
+      const newPosition = Player.position.y + Player.speed; if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
         Player.position.y += Player.speed;
       }
     }
@@ -71,6 +71,16 @@ const Player = {
       SQUARE_SIZE,
       SQUARE_SIZE
     );
+  },
+  /** @param {MouseEvent} event
+  */
+  attack(event) {
+    const ctx = canvas.getContext('2d');
+    const x = event.clientX - canvas.offsetLeft;
+    const y = event.clientY - canvas.offsetTop;
+    const offsetX = x - SQUARE_SIZE / 2;
+    const offsetY = y - SQUARE_SIZE / 2;
+    ctx.drawImage(sprites.frog, 0, 0, SQUARE_SIZE, SQUARE_SIZE, offsetX, offsetY, SQUARE_SIZE, SQUARE_SIZE);
   }
 }
 
