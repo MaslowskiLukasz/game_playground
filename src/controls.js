@@ -53,7 +53,10 @@ const resetMovement = (event) => {
 const setupEventListener = () => {
   window.addEventListener('keydown', (event) => executeMovement(event));
   window.addEventListener('keyup', (event) => resetMovement(event));
-  canvas.addEventListener('click', (event) => Attack.setPosition(event));
+  canvas.addEventListener('click', (event) => {
+    Attack.setPosition(event)
+    Attack.playAnimation = true;
+  });
 }
 
 export {
