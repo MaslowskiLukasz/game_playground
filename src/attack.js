@@ -9,16 +9,21 @@ const fireAnimation = {
 }
 
 const AttackTypes = {
-  fire: fireAnimation,
+  fire: 'fire',
 }
 Object.freeze(AttackTypes);
+
+const Attacks = {
+  [AttackTypes.fire]: fireAnimation,
+}
+Object.freeze(Attacks);
 
 const Attack = {
   position: {
     x: 0,
     y: 0
   },
-  type: 'fire',
+  type: AttackTypes.fire,
   animationCount: 0,
   currentFrame: 0,
   playAnimation: true,
@@ -36,24 +41,20 @@ const Attack = {
     const offsetY = y - SQUARE_SIZE / 2;
 
     if (this.playAnimation) {
-      console.log(`current frame ${this.currentFrame}`);
-      console.log('is playing');
       const { currentFrame, animationCount } =
         animate(
-          AttackTypes[this.type].length,
+          Attacks[this.type].length,
           this.currentFrame,
           this.animationCount,
-          AttackTypes[this.type].speed
+          Attacks[this.type].speed
         );
       this.currentFrame = currentFrame;
       this.animationCount = animationCount;
-      console.log(`currentFrame ${currentFrame}`);
-      console.log(`this.currentFrame ${this.currentFrame}`);
 
       ctx.drawImage(
         sprites.frog,
         this.currentFrame * SQUARE_SIZE,
-        AttackTypes[this.type].startFrame,
+        Attacks[this.type].startFrame,
         SQUARE_SIZE,
         SQUARE_SIZE,
         offsetX,
@@ -62,7 +63,6 @@ const Attack = {
         SQUARE_SIZE
       );
     };
-    console.log(`current frame ${this.currentFrame}`);
 
     if (this.currentFrame === 0 && this.animationCount === 0) {
       this.playAnimation = false;
