@@ -2,6 +2,9 @@ import { animate } from "./animation";
 import { SQUARE_SIZE } from "./constants";
 import { sprites } from "./sprites";
 
+/** @typedef {Object} AttackAnimation */
+
+/** @type {AttackAnimation} */
 const fireAnimation = {
   startFrame: 0,
   length: 9,
