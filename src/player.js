@@ -4,6 +4,7 @@ import { gridState } from "./grid";
 import { sprites } from "./sprites";
 import { animate } from "./animation";
 import { checkInBoundWorld } from "./helpers";
+import { canvas } from "./render";
 
 const Player = {
   position: {
@@ -19,8 +20,7 @@ const Player = {
       }
     }
     if (movementState.DOWN) {
-      const newPosition = Player.position.y + Player.speed;
-      if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
+      const newPosition = Player.position.y + Player.speed; if (checkInBoundWorld(newPosition) && !checkCollision('down')) {
         Player.position.y += Player.speed;
       }
     }
@@ -71,7 +71,7 @@ const Player = {
       SQUARE_SIZE,
       SQUARE_SIZE
     );
-  }
+  },
 }
 
 /** 

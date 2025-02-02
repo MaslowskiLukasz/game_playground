@@ -1,4 +1,5 @@
 import { Player } from "./player";
+import { Attack } from "./attack";
 import { gridState } from "./grid";
 import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
@@ -84,6 +85,7 @@ const render = () => {
   redraw();
   enemy.draw(ctx);
   Player.draw(ctx);
+  Attack.draw(ctx);
 }
 
-export { render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };
+export { canvas, render, updateRenderWindow, clearWindow, ctx, updateEnemiesPosition };

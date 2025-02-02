@@ -93,4 +93,11 @@ class Enemy {
  * @property {number} animationCount
  */
 
+/** @typedef {Object} AttackAnimation
+ * @property {number} startFrame
+ * @property {number} length
+ * @property {number} speed
+ * @property {number} size
+ * @property {string} sprite
+ */
 export { Node, Position, Enemy };
