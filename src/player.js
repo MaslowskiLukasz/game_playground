@@ -72,16 +72,6 @@ const Player = {
       SQUARE_SIZE
     );
   },
-  /** @param {MouseEvent} event
-  */
-  attack(event) {
-    const ctx = canvas.getContext('2d');
-    const x = event.clientX - canvas.offsetLeft;
-    const y = event.clientY - canvas.offsetTop;
-    const offsetX = x - SQUARE_SIZE / 2;
-    const offsetY = y - SQUARE_SIZE / 2;
-    ctx.drawImage(sprites.frog, 0, 0, SQUARE_SIZE, SQUARE_SIZE, offsetX, offsetY, SQUARE_SIZE, SQUARE_SIZE);
-  }
 }
 
 /** 
