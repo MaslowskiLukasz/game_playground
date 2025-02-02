@@ -4,8 +4,10 @@ import { sprites } from "./sprites";
 
 const fireAnimation = {
   startFrame: 0,
-  length: 3,
+  length: 9,
   speed: 10,
+  size: SQUARE_SIZE * 2,
+  sprite: "fireAttack",
 }
 
 const AttackTypes = {
@@ -35,32 +37,33 @@ const Attack = {
   },
   /** @param {CanvasRenderingContext2D} ctx */
   draw(ctx) {
+    const currentAttack = Attacks[this.type];
     const x = this.position.x - canvas.offsetLeft;
     const y = this.position.y - canvas.offsetTop;
-    const offsetX = x - SQUARE_SIZE / 2;
-    const offsetY = y - SQUARE_SIZE / 2;
+    const offsetX = x - currentAttack.size / 2;
+    const offsetY = y - currentAttack.size / 2;
 
     if (this.playAnimation) {
       const { currentFrame, animationCount } =
         animate(
-          Attacks[this.type].length,
+          currentAttack.length,
           this.currentFrame,
           this.animationCount,
-          Attacks[this.type].speed
+          currentAttack.speed
         );
       this.currentFrame = currentFrame;
       this.animationCount = animationCount;
 
       ctx.drawImage(
-        sprites.frog,
-        this.currentFrame * SQUARE_SIZE,
-        Attacks[this.type].startFrame,
-        SQUARE_SIZE,
-        SQUARE_SIZE,
+        sprites[currentAttack.sprite],
+        this.currentFrame * currentAttack.size,
+        currentAttack.startFrame,
+        currentAttack.size,
+        currentAttack.size,
         offsetX,
         offsetY,
-        SQUARE_SIZE,
-        SQUARE_SIZE
+        currentAttack.size,
+        currentAttack.size,
       );
     };
 
