@@ -14,13 +14,6 @@ const getSquareImage = (square) => {
   return sprites[`hole-${square}`];
 }
 
-const getOverSquareImage = (square) => {
-  if (square > 0) {
-    return sprites.bush;
-  }
-  return null;
-}
-
 /**
  * Check if point is outside of grid map
  * @param {number} value
@@ -41,4 +34,4 @@ const checkInBoundWorld = (position) => {
   return position <= SQUARE_SIZE * (NUMBER_OF_SQUARES - 1) && position >= 0;
 }
 
-export { getSquareImage, getOverSquareImage, checkOutOfBounds, checkInBoundWorld };
+export { getSquareImage, checkOutOfBounds, checkInBoundWorld };
