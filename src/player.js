@@ -1,4 +1,4 @@
-import { SQUARE_SIZE } from "./constants";
+import { GRASS_MAX, SQUARE_SIZE } from "./constants";
 import { movementState } from "./controls";
 import { gridState } from "./grid";
 import { sprites } from "./sprites";
@@ -102,7 +102,7 @@ const checkUpSquareGrid = () => {
   const leftValue = gridState[y][xLeft];
   const rightValue = gridState[y][xRight];
 
-  if (leftValue !== 0 || rightValue !== 0) {
+  if (leftValue > GRASS_MAX || rightValue > GRASS_MAX) {
     return true;
   }
   return false;
@@ -119,7 +119,7 @@ const checkDownSquareGrid = () => {
   const leftValue = gridState[y][xLeft];
   const rightValue = gridState[y][xRight];
 
-  if (leftValue !== 0 || rightValue !== 0) {
+  if (leftValue > GRASS_MAX || rightValue > GRASS_MAX) {
     return true;
   }
   return false;
@@ -136,7 +136,7 @@ const checkLeftSquareGrid = () => {
   const topValue = gridState[yTop][x];
   const downValue = gridState[yDown][x];
 
-  if (topValue !== 0 || downValue !== 0) {
+  if (topValue > GRASS_MAX || downValue > GRASS_MAX) {
     return true;
   }
   return false;
@@ -153,7 +153,7 @@ const checkRightSquareGrid = () => {
   const topValue = gridState[yTop][x];
   const downValue = gridState[yDown][x];
 
-  if (topValue !== 0 || downValue !== 0) {
+  if (topValue > GRASS_MAX || downValue > GRASS_MAX) {
     return true;
   }
   return false;

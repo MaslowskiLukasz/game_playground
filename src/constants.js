@@ -5,6 +5,9 @@ const CAMERA_MODES = {
   edgeWindow: "edgeWindow"
 }
 
+const GRASS_MAX = 9;
+const WATER_MAX = 19;
+
 /** @type (number) */
 const NUMBER_OF_SQUARES = 16;
 //** @type {number} */
@@ -34,5 +37,7 @@ export {
   WINDOW_SIZE,
   WINDOW_WIDTH,
   CAMERA_MODE,
-  CAMERA_MODES
+  CAMERA_MODES,
+  GRASS_MAX,
+  WATER_MAX,
 }
