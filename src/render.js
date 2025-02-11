@@ -1,9 +1,9 @@
 import { Player } from "./player";
 import { Attack } from "./attack";
 import { gridState } from "./grid";
-import { NUMBER_OF_SQUARES, PLAYER_COLOR, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
+import { NUMBER_OF_SQUARES, WINDOW_SIZE, SQUARE_SIZE, WINDOW_WIDTH } from "./constants";
 import { CAMERA_MODE, CAMERA_MODES } from "./constants";
-import { getSquareColor, checkOutOfBounds } from "./helpers";
+import { getSquareImage, checkOutOfBounds } from "./helpers";
 import { enemy } from "./enemy";
 import { Position } from "./types";
 
@@ -33,8 +33,8 @@ const updateRenderWindow = () => {
 const redrawMap = () => {
   for (let y = 0; y < NUMBER_OF_SQUARES; y++) {
     for (let x = 0; x < NUMBER_OF_SQUARES; x++) {
-      ctx.fillStyle = getSquareColor(gridState[y][x]);
-      ctx.fillRect(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+      const img = getSquareImage(gridState[y][x]);
+      ctx.drawImage(img, 0, 0, SQUARE_SIZE, SQUARE_SIZE, x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
 }
@@ -53,12 +53,8 @@ const redrawGridMovingCamera = () => {
         x: windowStartPosition.x + x,
         y: windowStartPosition.y + y
       }
-      if (Player.position.x === gridIndex.x && Player.position.y === gridIndex.y) {
-        ctx.fillStyle = PLAYER_COLOR;
-      } else {
-        ctx.fillStyle = getSquareColor(gridState[gridIndex.y][gridIndex.x]);
-      }
-      ctx.fillRect(gridIndex.x * SQUARE_SIZE, gridIndex.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+      const img = getSquareImage(gridState[gridIndex.y][gridIndex.x]);
+      ctx.drawImage(img, 0, 0, SQUARE_SIZE, SQUARE_SIZE, gridIndex.x * SQUARE_SIZE, gridIndex.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
     }
   }
 }
@@ -66,9 +62,11 @@ const redrawGridMovingCamera = () => {
 const redraw = () => {
   switch (CAMERA_MODE) {
     case CAMERA_MODES.movingWindow:
+      updateRenderWindow();
       redrawMovingCamera();
       break;
     case CAMERA_MODES.gridMovingWindow:
+      updateRenderWindow();
       redrawGridMovingCamera();
       break;
     default:

@@ -1,4 +1,4 @@
-import { NUMBER_OF_SQUARES, PATH_COLOR } from "./constants";
+import { GRASS_MAX, NUMBER_OF_SQUARES, PATH_COLOR } from "./constants";
 import { gridState } from "./grid";
 import { ctx } from "./render";
 import { SQUARE_SIZE } from "./constants";
@@ -22,16 +22,16 @@ const getSiblingNodes = (node) => {
   const results = [];
   const { x, y } = node.position;
 
-  if (x > 0 && gridState[y][x - 1] === 0) {
+  if (x > 0 && gridState[y][x - 1] <= GRASS_MAX) {
     results.push(new Node({ x: x - 1, y }));
   }
-  if (x < NUMBER_OF_SQUARES - 1 && gridState[y][x + 1] === 0) {
+  if (x < NUMBER_OF_SQUARES - 1 && gridState[y][x + 1] <= GRASS_MAX) {
     results.push(new Node({ x: x + 1, y }));
   }
-  if (y > 0 && gridState[y - 1][x] === 0) {
+  if (y > 0 && gridState[y - 1][x] <= GRASS_MAX) {
     results.push(new Node({ x, y: y - 1 }));
   }
-  if (y < NUMBER_OF_SQUARES - 1 && gridState[y + 1][x] === 0) {
+  if (y < NUMBER_OF_SQUARES - 1 && gridState[y + 1][x] <= GRASS_MAX) {
     results.push(new Node({ x, y: y + 1 }));
   }
   return results;
