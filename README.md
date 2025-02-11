@@ -10,11 +10,11 @@ This project started as a way to get more familiar with the Canvas API and evolv
 ## What is done (or mostly done)?
 - Displaying player sprite
 - Drawing a map
-- Camera - drawing a part of map that follows player movement 
+- Camera - drawing a part of the map that follows the player's movement
 - Player movement
 - Player collision detection with map elements
-- Basics of spritesheet animation
-- Fireing an attack
+- Basics of sprite sheet animation
+- Displaying attack animation
 - Enemy pathfinding - A* algorithm
 
 ## What I'll work on?
